@@ -110,7 +110,7 @@
           <h2 id="projects-title">Das Ergebnis<br>spricht für sich.</h2>
           <p>Vorher und nachher – echte Projektbilder zeigen am besten, was saubere Arbeit verändert.</p>
         </div>
-        <div class="project-grid">${i.map(h).join(``)}</div>
+        <div class="project-grid" tabindex="0" aria-label="Vorher-Nachher-Projekte horizontal durchblättern">${i.map(h).join(``)}</div>
       </section>
 
       <section class="section portfolio" aria-labelledby="portfolio-title">
