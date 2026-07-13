@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lowrezmyan.github.io/hs-am/sitemap.xml
