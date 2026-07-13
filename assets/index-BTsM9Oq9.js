@@ -41,7 +41,12 @@
       <div><h3>${n}</h3><p>${r}</p></div>
     </div>
   </article>
-`,v=([t,n,r,i])=>`
+`,v=e=>`
+  <div class="carousel-controls" aria-label="${e} navigatie">
+    <button class="carousel-arrow carousel-arrow--prev" type="button" data-carousel-prev aria-label="Vorige ${e}">${n.arrow}</button>
+    <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="Volgende ${e}">${n.arrow}</button>
+  </div>
+`,y=([t,n,r,i])=>`
   <div class="hero-slide"><img src="${e(t)}" alt="${n}" width="${r}" height="${i}" fetchpriority="${t===l[0][0]?`high`:`low`}" decoding="async" /></div>
 `;document.querySelector(`#app`).innerHTML=`
   <div class="page" id="top">
@@ -85,7 +90,8 @@
 
         <div class="hero__media">
           <div class="hero-carousel" data-carousel="hero" aria-label="HS-AM Arbeiten">
-            <div class="hero-carousel__rail">${l.map(v).join(``)}</div>
+            <div class="hero-carousel__rail" data-carousel-track>${l.map(y).join(``)}</div>
+            ${v(`Hero-Bilder`)}
           </div>
           <div class="hero__stamp"><strong>20</strong><span>Jahre<br>Erfahrung</span></div>
         </div>
@@ -100,7 +106,10 @@
           <div><p class="eyebrow">Leistungen</p><h2 id="services-title">Ein Ansprechpartner.<br>Viele Lösungen.</h2></div>
           <p>Von der einzelnen Reparatur bis zur Renovierung eines ganzen Raumes. Fragen Sie einfach an, was bei Ihnen gemacht werden soll. Weitere Arbeiten auf Anfrage.</p>
         </div>
-        <div class="service-grid" tabindex="0" aria-label="Leistungen horizontal durchblättern">${r.map(m).join(``)}</div>
+        <div class="carousel-frame" data-carousel="services" data-autoplay="false">
+          <div class="service-grid" data-carousel-track tabindex="0" aria-label="Leistungen horizontal durchblättern">${r.map(m).join(``)}</div>
+          ${v(`Leistungen`)}
+        </div>
         <div class="section-action"><p>Nicht sicher, ob Ihre Arbeit dabei ist?</p><a class="text-link" href="tel:+492099723154">Einfach kurz anrufen ${n.arrow}</a></div>
       </section>
 
@@ -110,7 +119,10 @@
           <h2 id="projects-title">Das Ergebnis<br>spricht für sich.</h2>
           <p>Vorher und nachher – echte Projektbilder zeigen am besten, was saubere Arbeit verändert.</p>
         </div>
-        <div class="project-grid" tabindex="0" aria-label="Vorher-Nachher-Projekte horizontal durchblättern">${i.map(h).join(``)}</div>
+        <div class="carousel-frame" data-carousel="projects" data-autoplay="false">
+          <div class="project-grid" data-carousel-track tabindex="0" aria-label="Vorher-Nachher-Projekte horizontal durchblättern">${i.map(h).join(``)}</div>
+          ${v(`Projekte`)}
+        </div>
       </section>
 
       <section class="section portfolio" aria-labelledby="portfolio-title">
@@ -119,9 +131,10 @@
           <p>Ein scrollbarer Einblick in verschiedene Arbeiten von HS-AM – von der ersten Maßarbeit bis zur letzten sauberen Fuge.</p>
         </div>
         <div class="portfolio-carousel" data-carousel="portfolio">
-          <div class="portfolio-rail" tabindex="0" aria-label="Portfolio-Bilder horizontal durchblättern">
+          <div class="portfolio-rail" data-carousel-track tabindex="0" aria-label="Portfolio-Bilder horizontal durchblättern">
           ${c.map(g).join(``)}
           </div>
+          ${v(`Portfolio-Bilder`)}
           <div class="carousel-dots" data-carousel-dots aria-label="Portfolio navigatie"><button type="button" aria-label="Portfolio Bild 1" aria-current="true"></button><button type="button" aria-label="Portfolio Bild 2"></button><button type="button" aria-label="Portfolio Bild 3"></button></div>
         </div>
       </section>
@@ -132,7 +145,8 @@
           <p>HS-AM bei der Arbeit. Echt und direkt. Das Video in der Mitte läuft automatisch und wiederholt sich.</p>
         </div>
         <div class="video-slider" data-carousel="videos">
-          <div class="video-grid" tabindex="0" aria-label="Video gallery horizontal durchblättern">${u.map(([e,t,n,r,i])=>_({number:e,title:t,text:n,poster:i,source:r,alt:`HS-AM bei ${t}`})).join(``)}</div>
+          <div class="video-grid" data-carousel-track tabindex="0" aria-label="Video gallery horizontal durchblättern">${u.map(([e,t,n,r,i])=>_({number:e,title:t,text:n,poster:i,source:r,alt:`HS-AM bei ${t}`})).join(``)}</div>
+          ${v(`Video-Galerie`)}
           <div class="carousel-dots" data-carousel-dots aria-label="Video navigatie"><button type="button" aria-label="Video 1" aria-current="true"></button><button type="button" aria-label="Video 2"></button><button type="button" aria-label="Video 3"></button></div>
         </div>
       </section>
@@ -143,7 +157,10 @@
           <h2 id="quality-title">Nicht nur fertig.<br>Richtig fertig.</h2>
           <p>HS-AM arbeitet mit einem klaren Anspruch: Was besprochen wird, wird sauber ausgeführt und ordentlich hinterlassen.</p>
         </div>
-        <div class="quality-grid">${o.map(([t,n,r],i)=>`<article><div class="quality-card__media"><img src="${e(r)}" alt="${t}" width="768" height="1024" loading="lazy" decoding="async" /></div><div class="quality-card__copy"><span>0${i+1}</span><h3>${t}</h3><p>${n}</p></div></article>`).join(``)}</div>
+        <div class="carousel-frame" data-carousel="quality" data-autoplay="false">
+          <div class="quality-grid" data-carousel-track tabindex="0" aria-label="Qualitätsversprechen horizontal durchblättern">${o.map(([t,n,r],i)=>`<article><div class="quality-card__media"><img src="${e(r)}" alt="${t}" width="768" height="1024" loading="lazy" decoding="async" /></div><div class="quality-card__copy"><span>0${i+1}</span><h3>${t}</h3><p>${n}</p></div></article>`).join(``)}</div>
+          ${v(`Qualitätsversprechen`)}
+        </div>
       </section>
 
       <section class="section process-section" aria-labelledby="process-title">
@@ -161,7 +178,10 @@
           <div><p class="eyebrow">Kundenstimmen</p><h2 id="testimonial-title">Wenn es fertig ist, merkt man den Unterschied.</h2></div>
           <p>Kurze Rückmeldungen aus unterschiedlichen Aufträgen. Keine Hochglanzversprechen, sondern das, worauf es im Alltag ankommt: klare Absprache und saubere Übergabe.</p>
         </div>
-        <div class="testimonial-rail" tabindex="0" aria-label="Kundenstimmen horizontal durchblättern">${s.map(([e,t,n])=>`<article class="testimonial-card"><div class="testimonial-card__top"><span class="avatar">${e}</span><div><strong>${t}</strong><span class="verified">Kundenfeedback</span></div></div><div class="stars" aria-label="Fünf von fünf Sternen">★★★★★</div><p>${n}</p></article>`).join(``)}</div>
+        <div class="carousel-frame" data-carousel="testimonials" data-autoplay="false">
+          <div class="testimonial-rail" data-carousel-track tabindex="0" aria-label="Kundenstimmen horizontal durchblättern">${s.map(([e,t,n])=>`<article class="testimonial-card"><div class="testimonial-card__top"><span class="avatar">${e}</span><div><strong>${t}</strong><span class="verified">Kundenfeedback</span></div></div><div class="stars" aria-label="Fünf von fünf Sternen">★★★★★</div><p>${n}</p></article>`).join(``)}</div>
+          ${v(`Kundenstimmen`)}
+        </div>
       </section>
 
       <section id="ueber-uns" class="section about" aria-labelledby="about-title">
@@ -246,5 +266,5 @@
       <a href="#kontakt" aria-label="Per e-mail contact opnemen">${n.mail}<span>Contact</span></a>
     </div>
   </div>
-`;var y=(e,t)=>e.classList.toggle(`is-playing`,t);document.querySelectorAll(`[data-video-shell]`).forEach(e=>{let t=e.querySelector(`video[data-src]`);t.addEventListener(`play`,()=>y(e,!0)),t.addEventListener(`pause`,()=>y(e,!1)),t.addEventListener(`ended`,()=>y(e,!1))});var b=new IntersectionObserver(e=>{e.forEach(e=>{let t=e.target,n=t.querySelector(`video[data-src]`);if(!e.isIntersecting||e.intersectionRatio<.62){n.pause(),y(t,!1);return}document.querySelectorAll(`[data-video-shell]`).forEach(e=>{e!==t&&(e.querySelector(`video`)?.pause(),y(e,!1))}),n.dataset.loaded||(n.src=n.dataset.src,n.dataset.loaded=`true`,n.load()),n.play().catch(()=>{})})},{threshold:[.62]});document.querySelectorAll(`[data-video-shell]`).forEach(e=>b.observe(e)),document.querySelectorAll(`[data-before-after]`).forEach(e=>{let t=e.querySelector(`.before-after__range`);t.addEventListener(`input`,()=>{e.style.setProperty(`--split`,`${t.value}%`)})});var x=(e,t)=>{let n=e.querySelector(`[class$="-rail"], [class$="__rail"], .video-grid`),r=[...n.children],i=[...e.querySelectorAll(`[data-carousel-dots] button`)],a=0,o,s=()=>{let e=r.length<4?a:Math.round(a/(r.length-1)*(i.length-1));i.forEach((t,n)=>t.setAttribute(`aria-current`,n===e?`true`:`false`))},c=(e,t=!0)=>{a=(e+r.length)%r.length;let i=r[a],o=i.offsetLeft-(n.clientWidth-i.clientWidth)/2,c=n.scrollWidth-n.clientWidth;n.scrollTo({left:Math.max(0,Math.min(o,c)),behavior:t?`smooth`:`auto`}),s()};i.forEach((e,t)=>e.addEventListener(`click`,()=>{c(Math.round(t/(i.length-1)*(r.length-1)))})),n.addEventListener(`scroll`,()=>{window.clearTimeout(o);let e=n.getBoundingClientRect().left+n.clientWidth/2;a=r.reduce((t,n,i)=>Math.abs(n.getBoundingClientRect().left+n.getBoundingClientRect().width/2-e)<Math.abs(r[t].getBoundingClientRect().left+r[t].getBoundingClientRect().width/2-e)?i:t,0),s(),o=window.setTimeout(()=>{o=window.setInterval(()=>c(a+1),t)},7e3)},{passive:!0}),o=window.setInterval(()=>c(a+1),t),s()};document.querySelectorAll(`[data-carousel]`).forEach(e=>x(e,e.dataset.carousel===`videos`?6e3:4600));var S=document.querySelector(`.header-menu`),C=document.querySelector(`#site-navigation`);S?.addEventListener(`click`,()=>{let e=C.classList.toggle(`is-open`);document.body.classList.toggle(`menu-open`,e),S.setAttribute(`aria-expanded`,String(e)),S.setAttribute(`aria-label`,e?`Menü schließen`:`Menü öffnen`)}),C?.querySelectorAll(`a`).forEach(e=>e.addEventListener(`click`,()=>{C.classList.remove(`is-open`),document.body.classList.remove(`menu-open`),S?.setAttribute(`aria-expanded`,`false`),S?.setAttribute(`aria-label`,`Menü öffnen`)})),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&(C?.classList.remove(`is-open`),document.body.classList.remove(`menu-open`),S?.setAttribute(`aria-expanded`,`false`),S?.setAttribute(`aria-label`,`Menü öffnen`))}),document.querySelector(`[data-contact-form]`)?.addEventListener(`submit`,e=>{e.preventDefault();let n=e.currentTarget,r=Object.fromEntries(new FormData(n).entries()),i=`Anfrage an HS-AM von ${r.name}`,a=[`Name: ${r.name}`,`Kontakt: ${r.contact}`,`Ort: ${r.location||`Nicht angegeben`}`,`Leistung: ${r.service||`Nicht angegeben`}`,``,r.message].join(`
-`),o=n.querySelector(`[data-form-note]`);o&&(o.textContent=`Ihr Mailprogramm wird geöffnet. Die Anfrage ist bereits vorbereitet.`),window.location.href=`mailto:${t.email}?subject=${encodeURIComponent(i)}&body=${encodeURIComponent(a)}`});var w=document.querySelector(`.page`),T=()=>w.classList.toggle(`show-mobile-call`,window.scrollY>640);T(),window.addEventListener(`scroll`,T,{passive:!0});
+`;var b=(e,t)=>e.classList.toggle(`is-playing`,t);document.querySelectorAll(`[data-video-shell]`).forEach(e=>{let t=e.querySelector(`video[data-src]`);t.addEventListener(`play`,()=>b(e,!0)),t.addEventListener(`pause`,()=>b(e,!1)),t.addEventListener(`ended`,()=>b(e,!1))});var x=new IntersectionObserver(e=>{e.forEach(e=>{let t=e.target,n=t.querySelector(`video[data-src]`);if(!e.isIntersecting||e.intersectionRatio<.62){n.pause(),b(t,!1);return}document.querySelectorAll(`[data-video-shell]`).forEach(e=>{e!==t&&(e.querySelector(`video`)?.pause(),b(e,!1))}),n.dataset.loaded||(n.src=n.dataset.src,n.dataset.loaded=`true`,n.load()),n.play().catch(()=>{})})},{threshold:[.62]});document.querySelectorAll(`[data-video-shell]`).forEach(e=>x.observe(e)),document.querySelectorAll(`[data-before-after]`).forEach(e=>{let t=e.querySelector(`.before-after__range`);t.addEventListener(`input`,()=>{e.style.setProperty(`--split`,`${t.value}%`)})});var S=(e,t)=>{let n=e.querySelector(`[data-carousel-track]`);if(!n)return;let r=[...n.children],i=[...e.querySelectorAll(`[data-carousel-dots] button`)],a=e.querySelector(`[data-carousel-prev]`),o=e.querySelector(`[data-carousel-next]`),s=e.dataset.autoplay!==`false`,c=0,l,u=()=>{let e=r.length<4?c:Math.round(c/(r.length-1)*(i.length-1));i.forEach((t,n)=>t.setAttribute(`aria-current`,n===e?`true`:`false`))},d=()=>{let t=n.scrollWidth>n.clientWidth+2;e.classList.toggle(`is-static`,!t),a&&(a.disabled=!t),o&&(o.disabled=!t)},f=(e,t=!0)=>{if(!r.length)return;c=(e+r.length)%r.length;let i=r[c],a=i.offsetLeft-(n.clientWidth-i.clientWidth)/2,o=n.scrollWidth-n.clientWidth;n.scrollTo({left:Math.max(0,Math.min(a,o)),behavior:t?`smooth`:`auto`}),u()};a?.addEventListener(`click`,()=>f(c-1)),o?.addEventListener(`click`,()=>f(c+1)),e.addEventListener(`keydown`,e=>{e.key!==`ArrowLeft`&&e.key!==`ArrowRight`||(e.preventDefault(),f(c+(e.key===`ArrowRight`?1:-1)))}),i.forEach((e,t)=>e.addEventListener(`click`,()=>{f(Math.round(t/(i.length-1)*(r.length-1)))})),n.addEventListener(`scroll`,()=>{if(!s){u();return}window.clearTimeout(l);let e=n.getBoundingClientRect().left+n.clientWidth/2;c=r.reduce((t,n,i)=>Math.abs(n.getBoundingClientRect().left+n.getBoundingClientRect().width/2-e)<Math.abs(r[t].getBoundingClientRect().left+r[t].getBoundingClientRect().width/2-e)?i:t,0),u(),l=window.setTimeout(()=>{l=window.setInterval(()=>f(c+1),t)},7e3)},{passive:!0}),s&&(l=window.setInterval(()=>f(c+1),t)),d(),window.addEventListener(`resize`,d),u()};document.querySelectorAll(`[data-carousel]`).forEach(e=>S(e,e.dataset.carousel===`videos`?6e3:4600));var C=document.querySelector(`.header-menu`),w=document.querySelector(`#site-navigation`);C?.addEventListener(`click`,()=>{let e=w.classList.toggle(`is-open`);document.body.classList.toggle(`menu-open`,e),C.setAttribute(`aria-expanded`,String(e)),C.setAttribute(`aria-label`,e?`Menü schließen`:`Menü öffnen`)}),w?.querySelectorAll(`a`).forEach(e=>e.addEventListener(`click`,()=>{w.classList.remove(`is-open`),document.body.classList.remove(`menu-open`),C?.setAttribute(`aria-expanded`,`false`),C?.setAttribute(`aria-label`,`Menü öffnen`)})),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&(w?.classList.remove(`is-open`),document.body.classList.remove(`menu-open`),C?.setAttribute(`aria-expanded`,`false`),C?.setAttribute(`aria-label`,`Menü öffnen`))}),document.querySelector(`[data-contact-form]`)?.addEventListener(`submit`,e=>{e.preventDefault();let n=e.currentTarget,r=Object.fromEntries(new FormData(n).entries()),i=`Anfrage an HS-AM von ${r.name}`,a=[`Name: ${r.name}`,`Kontakt: ${r.contact}`,`Ort: ${r.location||`Nicht angegeben`}`,`Leistung: ${r.service||`Nicht angegeben`}`,``,r.message].join(`
+`),o=n.querySelector(`[data-form-note]`);o&&(o.textContent=`Ihr Mailprogramm wird geöffnet. Die Anfrage ist bereits vorbereitet.`),window.location.href=`mailto:${t.email}?subject=${encodeURIComponent(i)}&body=${encodeURIComponent(a)}`});var T=document.querySelector(`.page`),E=()=>T.classList.toggle(`show-mobile-call`,window.scrollY>640);E(),window.addEventListener(`scroll`,E,{passive:!0});
